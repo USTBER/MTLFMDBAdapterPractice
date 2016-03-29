@@ -112,6 +112,8 @@ static PeopleStore *sharedPeopleStore;
         while([set next]){
             
             People *p = [MTLFMDBAdapter modelOfClass:[People class] fromFMResultSet:set error:nil];
+            int personalID = [set intForColumn:@"personalID"];
+            [p setValue:[NSNumber numberWithInt:personalID] forKey:@"personalID"];
             [temArr addObject:p];
         }
         NSArray *arr = [[NSArray alloc] initWithArray:temArr copyItems:YES];
