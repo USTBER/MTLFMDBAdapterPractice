@@ -12,14 +12,12 @@
 
 + (NSDictionary *)FMDBColumnsByPropertyKey{
     
-    
-    //    NSDictionary *dic = @{@"guid":@"guid", @"name":@"name", @"adress":@"adress", @"skill":@"skill"};
-    //    return dic;
     NSSet *propertySet = [People propertyKeys];
     NSMutableDictionary *temDic = [[NSMutableDictionary alloc] init];
     for(NSString *property in propertySet){
         
-        if([property isEqualToString:@"personalID"]){
+        NSString *primaryKey = [[self FMDBPrimaryKeys] objectAtIndex:0];
+        if(primaryKey && [property isEqualToString:primaryKey]){
             [temDic setObject:[NSNull null] forKey:property];
         }else{
             [temDic setObject:property forKey:property];
