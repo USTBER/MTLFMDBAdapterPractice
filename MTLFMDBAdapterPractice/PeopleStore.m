@@ -50,7 +50,7 @@ static PeopleStore *sharedPeopleStore;
     }
     _peopleDatabase = [FMDatabase databaseWithPath:self.tablePath];
     [_peopleDatabase open];
-    NSString *createTableSQL = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ (%@ INTEGER PRIMARY KEY AUTOINCREMENT, %@ TEXT, %@ TEXT, %@ TEXT)", PeopleTableName, @"personalID", @"name", @"adress", @"skill"];
+    NSString *createTableSQL = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ (%@ INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, %@ TEXT, %@ TEXT, %@ TEXT)", PeopleTableName, @"personalID", @"name", @"adress", @"skill"];
     [_peopleDatabase executeUpdate:createTableSQL];
     [_peopleDatabase close];
     return _peopleDatabase;
@@ -105,6 +105,18 @@ static PeopleStore *sharedPeopleStore;
 
 - (NSArray *)getAllPeople{
     
+    NSString *getAllSQL = [NSString stringWithFormat:@"SELECT * FROM %@", PeopleTableName];
+    NSMutableArray *temArr = [[NSMutableArray alloc] init];
+    if([self.peopleDatabase open]){
+       FMResultSet *set = [self.peopleDatabase executeQuery:getAllSQL];
+        while([set next]){
+            
+            People *p = [MTLFMDBAdapter modelOfClass:[People class] fromFMResultSet:set error:nil];
+            [temArr addObject:p];
+        }
+        NSArray *arr = [[NSArray alloc] initWithArray:temArr copyItems:YES];
+        return arr;
+    }
     return nil;
 }
 
