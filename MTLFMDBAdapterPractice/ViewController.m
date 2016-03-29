@@ -12,17 +12,27 @@
 
 @interface ViewController ()
 
+@property (nonatomic, strong) PeopleStore *sharedStore;
+
 @end
 
 @implementation ViewController
 
+- (PeopleStore *)sharedStore{
+    if(_sharedStore){
+        return _sharedStore;
+    }
+    _sharedStore = [PeopleStore sharedPeopleStroe];
+    return _sharedStore;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-//        [self testAddPeople];
-    [self testGetAllPeople];
-//    [self testDeleteTable];
+    //        [self testAddPeople];
+//    [self testGetAllPeople];
+    //    [self testDeleteTable];
+    [self testGetPeopleWithProperty];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,15 +42,15 @@
 
 - (void)testDeleteTable{
     
-    PeopleStore *sharedStore = [PeopleStore sharedPeopleStroe];
-    [sharedStore deleteTable];
+    
+    [self.sharedStore deleteTable];
 }
 
 - (void)testAddPeople{
     
     NSDictionary *peopleProperties = @ {@"name":@"李春醒", @"adress":@"USTB", @"skill":@"iOS Develop"};
-    PeopleStore *sharedStore = [PeopleStore sharedPeopleStroe];
-    BOOL success = [sharedStore addNewPeopleWithProperty:peopleProperties];
+    
+    BOOL success = [self.sharedStore addNewPeopleWithProperty:peopleProperties];
     if(success){
         NSLog(@"添加成功");
     }else{
@@ -48,14 +58,28 @@
     }
 }
 
+- (void)testGetPeopleWithProperty{
+    
+    NSDictionary *dic = @{@"personalID":@4};
+    NSArray *arr = [self.sharedStore peopleWithProperty:dic];
+    for(People *p in arr){
+        
+        NSArray *keys = [[p dictionaryValue] allKeys];
+        for(NSString *str in keys){
+            NSLog(@"key: %@ and value: %@", str, [[p dictionaryValue] objectForKey:str]);
+        }
+    }
+}
+
 - (void)testGetAllPeople{
     
-    PeopleStore *sharedStore = [PeopleStore sharedPeopleStroe];
-    BOOL success = [sharedStore getAllPeople];
-    if(success){
-        NSLog(@"添加成功");
-    }else{
-        NSLog(@"添加失败");
+    NSArray *arr = [self.sharedStore getAllPeople];
+    for(People *p in arr){
+        
+        NSArray *keys = [[p dictionaryValue] allKeys];
+        for(NSString *str in keys){
+            NSLog(@"key: %@ and value: %@", str, [[p dictionaryValue] objectForKey:str]);
+        }
     }
 }
 

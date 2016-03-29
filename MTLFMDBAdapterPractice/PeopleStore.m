@@ -100,6 +100,27 @@ static PeopleStore *sharedPeopleStore;
 
 - (NSArray *)peopleWithProperty:(NSDictionary *)properties{
     
+    if ([properties count]) {
+        People *p = [[People alloc] initWithDictionary:properties error:nil];
+        NSNumber *personalID = [properties objectForKey:@"personalID"];
+        if(personalID){
+        [p setValue:personalID forKey:@"personalID"];
+        }
+        NSString *whereSQL = [MTLFMDBAdapter whereStatementForModel:p];
+        NSString *selectSQL = [[NSString stringWithFormat:@"SELECT * FROM %@ WHERE", PeopleTableName] stringByAppendingString:whereSQL];
+        if([self.peopleDatabase open]){
+            NSMutableArray *temArr = [[NSMutableArray alloc] init];
+            FMResultSet *set = [self.peopleDatabase executeQuery:selectSQL];
+            while ([set next]) {
+                int personalID = [set intForColumn:@"personalID"];
+                People *p = [MTLFMDBAdapter modelOfClass:[People class] fromFMResultSet:set error:nil];
+                [p setValue:[NSNumber numberWithInt:personalID] forKey:@"personalID"];
+                [temArr addObject:p];
+            }
+            NSArray *arr = [[NSArray alloc] initWithArray:temArr copyItems:YES];
+            return arr;
+        }
+    }
     return nil;
 }
 
@@ -108,7 +129,7 @@ static PeopleStore *sharedPeopleStore;
     NSString *getAllSQL = [NSString stringWithFormat:@"SELECT * FROM %@", PeopleTableName];
     NSMutableArray *temArr = [[NSMutableArray alloc] init];
     if([self.peopleDatabase open]){
-       FMResultSet *set = [self.peopleDatabase executeQuery:getAllSQL];
+        FMResultSet *set = [self.peopleDatabase executeQuery:getAllSQL];
         while([set next]){
             
             People *p = [MTLFMDBAdapter modelOfClass:[People class] fromFMResultSet:set error:nil];
