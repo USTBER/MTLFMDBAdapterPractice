@@ -37,6 +37,7 @@
 		92241F0E1CAA362D00E0471A /* People.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = People.m; sourceTree = "<group>"; };
 		92241F361CAA881E00E0471A /* PeopleStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleStore.h; sourceTree = "<group>"; };
 		92241F371CAA881E00E0471A /* PeopleStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleStore.m; sourceTree = "<group>"; };
+		92241F441CAA97CB00E0471A /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		D672319134D070A395821982 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -114,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				92241F021CAA325100E0471A /* Assets.xcassets */,
+				92241F441CAA97CB00E0471A /* PrefixHeader.pch */,
 			);
 			name = Resource;
 			sourceTree = "<group>";

@@ -11,8 +11,8 @@
 
 @interface People : MTLModel
 <MTLFMDBSerializing>
-
-@property (nonatomic, copy) NSString *guid;
+@property (nonatomic, readonly, assign) int personalID;
+//@property (nonatomic, copy) NSString *guid;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *adress;
 @property (nonatomic, copy) NSString *skill;
