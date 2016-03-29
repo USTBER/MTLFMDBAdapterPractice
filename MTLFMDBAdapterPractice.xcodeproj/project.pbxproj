@@ -14,9 +14,14 @@
 		92241F011CAA325100E0471A /* MTLFMDBAdapterPractice.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 92241EFF1CAA325100E0471A /* MTLFMDBAdapterPractice.xcdatamodeld */; };
 		92241F031CAA325100E0471A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92241F021CAA325100E0471A /* Assets.xcassets */; };
 		92241F061CAA325100E0471A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92241F041CAA325100E0471A /* LaunchScreen.storyboard */; };
+		92241F0F1CAA362D00E0471A /* People.m in Sources */ = {isa = PBXBuildFile; fileRef = 92241F0E1CAA362D00E0471A /* People.m */; };
+		92241F381CAA881E00E0471A /* PeopleStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 92241F371CAA881E00E0471A /* PeopleStore.m */; };
+		9D33CCC4D309AFEF207C9F89 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 305DDCD56AB8FF260D39785C /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		305DDCD56AB8FF260D39785C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A75B8C7EC0C0660CEB4F7CC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		92241EF01CAA325100E0471A /* MTLFMDBAdapterPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MTLFMDBAdapterPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92241EF41CAA325100E0471A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		92241EF61CAA325100E0471A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -28,6 +33,11 @@
 		92241F021CAA325100E0471A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		92241F051CAA325100E0471A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		92241F071CAA325100E0471A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		92241F0D1CAA362D00E0471A /* People.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = People.h; sourceTree = "<group>"; };
+		92241F0E1CAA362D00E0471A /* People.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = People.m; sourceTree = "<group>"; };
+		92241F361CAA881E00E0471A /* PeopleStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleStore.h; sourceTree = "<group>"; };
+		92241F371CAA881E00E0471A /* PeopleStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleStore.m; sourceTree = "<group>"; };
+		D672319134D070A395821982 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,17 +45,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D33CCC4D309AFEF207C9F89 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0DFF2E01F77C387EA701E17D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				305DDCD56AB8FF260D39785C /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		92241EE71CAA325100E0471A = {
 			isa = PBXGroup;
 			children = (
 				92241EF21CAA325100E0471A /* MTLFMDBAdapterPractice */,
 				92241EF11CAA325100E0471A /* Products */,
+				E7756D6746401ECB52FB8BDE /* Pods */,
+				0DFF2E01F77C387EA701E17D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,15 +81,9 @@
 		92241EF21CAA325100E0471A /* MTLFMDBAdapterPractice */ = {
 			isa = PBXGroup;
 			children = (
-				92241EF61CAA325100E0471A /* AppDelegate.h */,
-				92241EF71CAA325100E0471A /* AppDelegate.m */,
-				92241EF91CAA325100E0471A /* ViewController.h */,
-				92241EFA1CAA325100E0471A /* ViewController.m */,
-				92241EFC1CAA325100E0471A /* Main.storyboard */,
-				92241F021CAA325100E0471A /* Assets.xcassets */,
-				92241F041CAA325100E0471A /* LaunchScreen.storyboard */,
-				92241F071CAA325100E0471A /* Info.plist */,
-				92241EFF1CAA325100E0471A /* MTLFMDBAdapterPractice.xcdatamodeld */,
+				92241F3D1CAA891A00E0471A /* Class */,
+				92241F3B1CAA88E300E0471A /* Resource */,
+				92241F391CAA883F00E0471A /* PublicClass */,
 				92241EF31CAA325100E0471A /* Supporting Files */,
 			);
 			path = MTLFMDBAdapterPractice;
@@ -82,6 +97,81 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		92241F391CAA883F00E0471A /* PublicClass */ = {
+			isa = PBXGroup;
+			children = (
+				92241EF61CAA325100E0471A /* AppDelegate.h */,
+				92241EF71CAA325100E0471A /* AppDelegate.m */,
+				92241EFC1CAA325100E0471A /* Main.storyboard */,
+				92241F041CAA325100E0471A /* LaunchScreen.storyboard */,
+				92241F071CAA325100E0471A /* Info.plist */,
+				92241EFF1CAA325100E0471A /* MTLFMDBAdapterPractice.xcdatamodeld */,
+			);
+			name = PublicClass;
+			sourceTree = "<group>";
+		};
+		92241F3B1CAA88E300E0471A /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				92241F021CAA325100E0471A /* Assets.xcassets */,
+			);
+			name = Resource;
+			sourceTree = "<group>";
+		};
+		92241F3D1CAA891A00E0471A /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				92241F3E1CAA892300E0471A /* Models */,
+				92241F411CAA895900E0471A /* Views */,
+				92241F421CAA896300E0471A /* Controllers */,
+				92241F431CAA8E1A00E0471A /* Stores */,
+			);
+			name = Class;
+			sourceTree = "<group>";
+		};
+		92241F3E1CAA892300E0471A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				92241F0D1CAA362D00E0471A /* People.h */,
+				92241F0E1CAA362D00E0471A /* People.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		92241F411CAA895900E0471A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		92241F421CAA896300E0471A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				92241EF91CAA325100E0471A /* ViewController.h */,
+				92241EFA1CAA325100E0471A /* ViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		92241F431CAA8E1A00E0471A /* Stores */ = {
+			isa = PBXGroup;
+			children = (
+				92241F361CAA881E00E0471A /* PeopleStore.h */,
+				92241F371CAA881E00E0471A /* PeopleStore.m */,
+			);
+			name = Stores;
+			sourceTree = "<group>";
+		};
+		E7756D6746401ECB52FB8BDE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D672319134D070A395821982 /* Pods.debug.xcconfig */,
+				7A75B8C7EC0C0660CEB4F7CC /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -89,9 +179,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 92241F0A1CAA325100E0471A /* Build configuration list for PBXNativeTarget "MTLFMDBAdapterPractice" */;
 			buildPhases = (
+				AB580C8A77AA31060BEB10F6 /* Check Pods Manifest.lock */,
 				92241EEC1CAA325100E0471A /* Sources */,
 				92241EED1CAA325100E0471A /* Frameworks */,
 				92241EEE1CAA325100E0471A /* Resources */,
+				6196DC679D4B6C41E3E566BE /* Embed Pods Frameworks */,
+				2A78DFF1C58496DB111826C7 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -147,6 +240,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2A78DFF1C58496DB111826C7 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6196DC679D4B6C41E3E566BE /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AB580C8A77AA31060BEB10F6 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		92241EEC1CAA325100E0471A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -154,7 +295,9 @@
 			files = (
 				92241EFB1CAA325100E0471A /* ViewController.m in Sources */,
 				92241F011CAA325100E0471A /* MTLFMDBAdapterPractice.xcdatamodeld in Sources */,
+				92241F0F1CAA362D00E0471A /* People.m in Sources */,
 				92241EF81CAA325100E0471A /* AppDelegate.m in Sources */,
+				92241F381CAA881E00E0471A /* PeopleStore.m in Sources */,
 				92241EF51CAA325100E0471A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -263,6 +406,7 @@
 		};
 		92241F0B1CAA325100E0471A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D672319134D070A395821982 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MTLFMDBAdapterPractice/Info.plist;
@@ -274,6 +418,7 @@
 		};
 		92241F0C1CAA325100E0471A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7A75B8C7EC0C0660CEB4F7CC /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MTLFMDBAdapterPractice/Info.plist;
@@ -302,6 +447,7 @@
 				92241F0C1CAA325100E0471A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
