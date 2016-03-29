@@ -1,0 +1,4 @@
+platform :ios,'9.0'
+pod 'MTLFMDBAdapter', '~> 0.2'
+pod 'FMDB', '~> 2.6'
+pod 'Mantle', '~> 2.0'
