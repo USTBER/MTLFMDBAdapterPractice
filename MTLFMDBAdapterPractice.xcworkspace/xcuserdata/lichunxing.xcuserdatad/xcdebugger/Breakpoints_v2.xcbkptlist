@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MTLFMDBAdapterPractice/PeopleStore.m"
-            timestampString = "480953905.828906"
+            timestampString = "480991746.64046"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
             landmarkName = "-peopleWithProperty:"
             landmarkType = "5">
          </BreakpointContent>

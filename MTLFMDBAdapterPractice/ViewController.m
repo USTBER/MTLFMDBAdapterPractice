@@ -29,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    //        [self testAddPeople];
+//            [self testAddPeople];
 //    [self testGetAllPeople];
     //    [self testDeleteTable];
     [self testGetPeopleWithProperty];

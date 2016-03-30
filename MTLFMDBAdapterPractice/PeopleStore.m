@@ -100,28 +100,37 @@ static PeopleStore *sharedPeopleStore;
 
 - (NSArray *)peopleWithProperty:(NSDictionary *)properties{
     
-    if ([properties count]) {
-        People *p = [[People alloc] initWithDictionary:properties error:nil];
-        NSNumber *personalID = [properties objectForKey:@"personalID"];
-        if(personalID){
-        [p setValue:personalID forKey:@"personalID"];
-        }
-        NSString *whereSQL = [MTLFMDBAdapter whereStatementForModel:p];
-        NSString *selectSQL = [[NSString stringWithFormat:@"SELECT * FROM %@ WHERE", PeopleTableName] stringByAppendingString:whereSQL];
-        if([self.peopleDatabase open]){
-            NSMutableArray *temArr = [[NSMutableArray alloc] init];
-            FMResultSet *set = [self.peopleDatabase executeQuery:selectSQL];
-            while ([set next]) {
-                int personalID = [set intForColumn:@"personalID"];
-                People *p = [MTLFMDBAdapter modelOfClass:[People class] fromFMResultSet:set error:nil];
-                [p setValue:[NSNumber numberWithInt:personalID] forKey:@"personalID"];
-                [temArr addObject:p];
-            }
-            NSArray *arr = [[NSArray alloc] initWithArray:temArr copyItems:YES];
-            return arr;
+    //条件不能为空，空的话需要通过getAllPeople得到
+    if(![self.peopleDatabase open]){
+        return nil;
+    }
+    if(![properties count]){
+        return nil;
+    }
+    NSArray *arr;
+    NSString *selectSQL = [NSString stringWithFormat:@"SELECT * FROM %@ WHERE ", PeopleTableName];
+    NSArray *keys = [properties allKeys];
+    int i = 0;
+    for(NSString *key in keys){
+        id value = [properties objectForKey:key];
+        NSString *conditionSQL = [NSString stringWithFormat:@"%@ = %@", key, value];
+        selectSQL = [selectSQL stringByAppendingString:conditionSQL];
+        if(i < keys.count - 1){
+            selectSQL = [selectSQL stringByAppendingString:@" AND "];
         }
     }
-    return nil;
+    selectSQL = [selectSQL stringByAppendingString:@";"];
+    NSMutableArray *temArr = [[NSMutableArray alloc] init];
+    FMResultSet *set = [self.peopleDatabase executeQuery:selectSQL];
+    while ([set next]) {
+        int personalID = [set intForColumn:@"personalID"];
+        People *p = [MTLFMDBAdapter modelOfClass:[People class] fromFMResultSet:set error:nil];
+        [p setValue:[NSNumber numberWithInt:personalID] forKey:@"personalID"];
+        [temArr addObject:p];
+    }
+    arr = [[NSArray alloc] initWithArray:temArr copyItems:YES];
+    
+    return arr;
 }
 
 - (NSArray *)getAllPeople{
