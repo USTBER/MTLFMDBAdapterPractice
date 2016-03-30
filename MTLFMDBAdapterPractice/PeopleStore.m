@@ -88,12 +88,25 @@ static PeopleStore *sharedPeopleStore;
     return false;
 }
 
-- (BOOL)updatePeople:(People *)p withProperty:(NSDictionary *)properties{
+- (BOOL)updatePeople:(People *)p withPrimaryKey:(id)primaryKey{
     
-    return false;
+    if(![self.peopleDatabase open]){
+        return false;
+    }
+    if(!primaryKey){
+        return false;
+    }
+    NSString *updateSQL = [MTLFMDBAdapter updateStatementForModel:p];
+    NSArray *propertyValues = [MTLFMDBAdapter columnValues:p];
+    NSMutableArray *arguments = [[NSMutableArray alloc] initWithArray:propertyValues copyItems:YES];
+    [arguments addObject:primaryKey];
+    BOOL success = [self.peopleDatabase executeUpdate:updateSQL withArgumentsInArray:arguments];
+    NSLog(@"%@", updateSQL);
+    return success;
 }
 
 - (BOOL)removePeopleWithProperty:(NSDictionary *)properties{
+    
     
     return false;
 }
@@ -108,17 +121,11 @@ static PeopleStore *sharedPeopleStore;
         return nil;
     }
     NSArray *arr;
-    NSString *selectSQL = [NSString stringWithFormat:@"SELECT * FROM %@ WHERE ", PeopleTableName];
-    NSArray *keys = [properties allKeys];
-    int i = 0;
-    for(NSString *key in keys){
-        id value = [properties objectForKey:key];
-        NSString *conditionSQL = [NSString stringWithFormat:@"%@ = %@", key, value];
-        selectSQL = [selectSQL stringByAppendingString:conditionSQL];
-        if(i < keys.count - 1){
-            selectSQL = [selectSQL stringByAppendingString:@" AND "];
-        }
-    }
+    NSString *selectSQL = [NSString stringWithFormat:@"SELECT * FROM %@", PeopleTableName];
+
+
+    NSString *whereSQL = [self whereSQLWith:properties];
+    selectSQL = [selectSQL stringByAppendingString:whereSQL];
     selectSQL = [selectSQL stringByAppendingString:@";"];
     NSMutableArray *temArr = [[NSMutableArray alloc] init];
     FMResultSet *set = [self.peopleDatabase executeQuery:selectSQL];
@@ -131,6 +138,26 @@ static PeopleStore *sharedPeopleStore;
     arr = [[NSArray alloc] initWithArray:temArr copyItems:YES];
     
     return arr;
+}
+
+- (NSString *)whereSQLWith:(NSDictionary *)properties {
+    
+    if(![properties count]){
+        return @"";
+    }
+    NSString *sql = @" WHERE ";
+    NSArray *keys = [properties allKeys];
+    int i = 0;
+    for(NSString *key in keys){
+        id value = [properties objectForKey:key];
+        NSString *conditionSQL = [NSString stringWithFormat:@"%@ = %@", key, value];
+        sql = [sql stringByAppendingString:conditionSQL];
+        if(i < keys.count - 1){
+            sql = [sql stringByAppendingString:@" AND "];
+        }
+    }
+    return sql;
+    
 }
 
 - (NSArray *)getAllPeople{

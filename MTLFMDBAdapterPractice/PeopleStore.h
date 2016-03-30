@@ -15,6 +15,6 @@
 - (NSArray *)peopleWithProperty:(NSDictionary *)properties;
 - (NSArray *)getAllPeople;
 - (BOOL)removePeopleWithProperty:(NSDictionary *)properties;
-- (BOOL)updatePeople:(People *)p withProperty:(NSDictionary *)properties;
+- (BOOL)updatePeople:(People *)p withPrimaryKey:(id)primaryKey;
 - (void)deleteTable;
 @end

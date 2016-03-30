@@ -30,9 +30,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 //            [self testAddPeople];
-//    [self testGetAllPeople];
+    [self testGetAllPeople];
     //    [self testDeleteTable];
-    [self testGetPeopleWithProperty];
+//    [self testGetPeopleWithProperty];
+//    [self testUpdatePeople];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -58,7 +59,7 @@
     }
 }
 
-- (void)testGetPeopleWithProperty{
+- (void)testGetPeopleWithPrimaryKey{
     
     NSDictionary *dic = @{@"personalID":@4};
     NSArray *arr = [self.sharedStore peopleWithProperty:dic];
@@ -81,6 +82,15 @@
             NSLog(@"key: %@ and value: %@", str, [[p dictionaryValue] objectForKey:str]);
         }
     }
+}
+- (void)testUpdatePeople{
+    
+    People *p = [People new];
+    p.name = @"温家宝";
+    p.skill = @"act";
+    p.adress = @"天上人间";
+    [self.sharedStore updatePeople:p withPrimaryKey:@4];
+    
 }
 
 @end
